@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hi</title>
+    <link rel="icon" href="images/buzz.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav-wrapper">
+            <div class="nav-left">
+                <div class="title">
+                    <a href="index.html">Intelligent Acoustic Monitoring</a>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <div class="nav-link-wrapper">
+                    <a href="index.html">ABOUT</a>
+                </div>
+                <div class="nav-link-wrapper active-nav-link">
+                    <a href="demo.html">DEMO</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <nav id="machinelist" class="sidenav">
+                <h3>Machine List</h3>
+                <ul>
+                    <li><a href="FaultSimulator.html">Fault Simulator</a></li>
+                    <li><a href="Fan.html">Fan</a></li>
+                    <li><a href="Pump.html">Pump</a></li>
+                </ul>
+            </nav>
+            <div id="main" class="main-wrapper">
+                <div class="sidenav-expand">
+                    <div class="hamburger" onclick="toggleMenu()">
+                        <i class="material-icons">menu</i>
+                    </div>
+                </div>
+                <div class="machines-container">
+                    <div class="machine-wrapper" id="Mazak-VC500AM">
+                        <a href="FaultSimulator.html">
+                            <div class="machine-block">
+                                <div class="machine-status" id="FaultSimulator-status">
+                                    <h2>Fault Simulator</h2>
+                                    <div class="heartbeat-color" id="FaultSimulator-heartbeat">
+                                        <img src="images/heartbeat.svg">
+                                        <p class="heartbeat-time" id="FaultSimulator-heartbeattime">LAST </p>
+                                    </div>
+                                </div>
+                                <div class="machine-img">
+                                    <img src="images/template.svg">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="machine-wrapper" id="Fan">
+                        <a href="Fan.html">
+                            <div class="machine-block">
+                                <div class="machine-status" id="Fan-status">
+                                    <h2>Fan</h2>
+                                    <div class="heartbeat-color" id="Fan-heartbeat">
+                                        <img src="images/heartbeat.svg">
+                                        <p class="heartbeat-time" id="Fan-heartbeattime">LAST </p>
+                                    </div>
+                                </div>
+                                <div class="machine-img">
+                                    <img src="images/template.svg">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="machine-wrapper" id="Pump">
+                        <a href="Pump.html">
+                            <div class="machine-block">
+                                <div class="machine-status" id="Pump-status">
+                                    <h2>Pump</h2>
+                                    <div class="heartbeat-color" id="Pump-heartbeat">
+                                        <img src="images/heartbeat.svg">
+                                        <p class="heartbeat-time" id="Pump-heartbeattime">LAST </p>
+                                    </div>
+                                </div>
+                                <div class="machine-img">
+                                    <img src="images/template.svg">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+    var toggleSwitch = 1;
+    function toggleMenu() {
+        if (toggleSwitch == 0){
+            document.getElementById("machinelist").style.left = "0px";
+            document.getElementById("main").style.marginLeft = "200px";
+            toggleSwitch = 1;
+        } else {
+            document.getElementById("machinelist").style.left = "-200px";
+            document.getElementById("main").style.marginLeft = "0";
+            toggleSwitch = 0;
+        }
+    }
+</script>
+</html>
