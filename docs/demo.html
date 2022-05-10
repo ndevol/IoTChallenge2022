@@ -44,15 +44,24 @@
                     </div>
                 </div>
                 <div class="machines-container">
-                    <div class="machine-wrapper" id="Mazak-VC500AM">
+                    <div class="machine-wrapper" id="FaultSimulator">
                         <a href="FaultSimulator.html">
                             <div class="machine-block">
                                 <div class="machine-status" id="FaultSimulator-status">
-                                    <h2>Fault Simulator</h2>
-                                    <div class="heartbeat-color" id="FaultSimulator-heartbeat">
+                                    <div class="machine-name">Fault Simulator</div>
+                                    <div class="heartbeat" id="FaultSimulator-heartbeat">
                                         <img src="images/heartbeat.svg">
-                                        <p class="heartbeat-time" id="FaultSimulator-heartbeattime">LAST </p>
+                                        <div class="heartbeat-time" id="FaultSimulator-heartbeattime">Last Heartbeat: </div>
                                     </div>
+                                    <div class="fault" id="FaultSimulator-fault">
+                                        <img src="images/fault.svg">
+                                        <div class="fault-time" id="FaultSimulator-faulttime">Last Fault: </div>
+                                    </div>
+                                    <div class="chart">
+                                        <svg class="chart-svg" id="FaultSimulator-chart" xmlns="http://www.w3.org/2000/svg">
+                                        </svg>
+                                    </div>
+                                    <div class="chart-label">Last 48 hrs</div>
                                 </div>
                                 <div class="machine-img">
                                     <img src="images/template.svg">
@@ -64,11 +73,20 @@
                         <a href="Fan.html">
                             <div class="machine-block">
                                 <div class="machine-status" id="Fan-status">
-                                    <h2>Fan</h2>
-                                    <div class="heartbeat-color" id="Fan-heartbeat">
+                                    <div class="machine-name">Fan</div>
+                                    <div class="heartbeat" id="Fan-heartbeat">
                                         <img src="images/heartbeat.svg">
-                                        <p class="heartbeat-time" id="Fan-heartbeattime">LAST </p>
+                                        <div class="heartbeat-time" id="Fan-heartbeattime">Last Heartbeat: </div>
                                     </div>
+                                    <div class="fault" id="Fan-fault">
+                                        <img src="images/fault.svg">
+                                        <div class="fault-time" id="Fan-faulttime">Last Fault: </div>
+                                    </div>
+                                    <div class="chart">
+                                        <svg class="chart-svg" id="Fan-chart" xmlns="http://www.w3.org/2000/svg">
+                                        </svg>
+                                    </div>
+                                    <div class="chart-label">Last 48 hrs</div>
                                 </div>
                                 <div class="machine-img">
                                     <img src="images/template.svg">
@@ -80,11 +98,20 @@
                         <a href="Pump.html">
                             <div class="machine-block">
                                 <div class="machine-status" id="Pump-status">
-                                    <h2>Pump</h2>
-                                    <div class="heartbeat-color" id="Pump-heartbeat">
+                                    <div class="machine-name">Pump</div>
+                                    <div class="heartbeat" id="Pump-heartbeat">
                                         <img src="images/heartbeat.svg">
-                                        <p class="heartbeat-time" id="Pump-heartbeattime">LAST </p>
+                                        <div class="heartbeat-time" id="Pump-heartbeattime">Last Heartbeat: </div>
                                     </div>
+                                    <div class="fault" id="Pump-fault">
+                                        <img src="images/fault.svg">
+                                        <div class="fault-time" id="Pump-faulttime">Last Fault: </div>
+                                    </div>
+                                    <div class="chart">
+                                        <svg class="chart-svg" id="Pump-chart" xmlns="http://www.w3.org/2000/svg">
+                                        </svg>
+                                    </div>
+                                    <div class="chart-label">Last 48 hrs</div>
                                 </div>
                                 <div class="machine-img">
                                     <img src="images/template.svg">
@@ -99,7 +126,7 @@
 </body>
 <script>
     /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-    var toggleSwitch = 1;
+    var toggleSwitch = 0;
     function toggleMenu() {
         if (toggleSwitch == 0){
             document.getElementById("machinelist").style.left = "0px";
@@ -111,5 +138,40 @@
             toggleSwitch = 0;
         }
     }
+
+    /* machine 1 chart */
+    var svg = document.getElementById("FaultSimulator-chart");
+    for (let i = 0; i < 10; i++){
+        var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        var color  = (i%2==0) ? "#B3A369" : "#003057"
+        var x = String(i*10) + "%";
+        newRect.setAttribute("x", x);
+        newRect.setAttribute("y", "0");
+        newRect.setAttribute("width", "10%");
+        newRect.setAttribute("height", "100%");
+        newRect.setAttribute("fill", color);
+        svg.appendChild(newRect);
+    }
+
+    /* machine 2 chart */
+    var svg = document.getElementById("Fan-chart");
+    var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    newRect.setAttribute("x", "0");
+    newRect.setAttribute("y", "0");
+    newRect.setAttribute("width", "100%");
+    newRect.setAttribute("height", "100%");
+    newRect.setAttribute("fill", "#54585A");
+    svg.appendChild(newRect);
+
+    /* machine 3 chart */
+    var svg = document.getElementById("Pump-chart");
+    var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    newRect.setAttribute("x", "0");
+    newRect.setAttribute("y", "0");
+    newRect.setAttribute("width", "100%");
+    newRect.setAttribute("height", "100%");
+    newRect.setAttribute("fill", "#54585A");
+    svg.appendChild(newRect);
+
 </script>
 </html>
