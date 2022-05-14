@@ -24,7 +24,7 @@ async function getLastFault(assetId, elementId) {
             // check if empty
             var arr = JSON.parse(data);
             if (arr.length == 0){
-                document.getElementById(elementId).style.backgroundColor = 'green';
+                document.getElementById(elementId).style.backgroundColor = '#32a06d';
                 document.getElementById(elementId+"time").innerHTML = "No Faults";
             } else {
                 let last_fault = new Date(JSON.parse(arr[0].payload).dateTime);
