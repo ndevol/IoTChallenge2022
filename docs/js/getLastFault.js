@@ -58,6 +58,7 @@ async function getLastFault(assetId, elementId) {
 
     } else {
         // otherwise display the current mode in the last fault spot
+        document.getElementById(elementId).style.backgroundColor = '#54585A';
         document.getElementById(elementId+"time").innerHTML = "Current Stage: "+mode;
     }
 

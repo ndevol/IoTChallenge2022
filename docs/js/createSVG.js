@@ -17,7 +17,7 @@ async function createSVG(assetId, elementId) {
         }
     }
     // for testing 
-    mode = 'deploy'
+    // mode = 'deploy'
 
     // only proceed if on/off threshold is set
     if (mode == 'deploy' || mode == 'training') {
