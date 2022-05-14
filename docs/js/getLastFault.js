@@ -34,7 +34,8 @@ async function getLastFault(assetId, elementId) {
                 // set color
                 let color = 'red';
                 if (diff > 60*60) {
-                    color = 'green';
+                    // color = 'green';
+                    color = '#32a06d';
                 }
         
                 // set units and rescale
