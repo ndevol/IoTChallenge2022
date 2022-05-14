@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Hi</title>
+    <title>Intelligent Acoustic Monitoring</title>
     <link rel="icon" href="images/buzz.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,153 +25,15 @@
                 <div class="nav-link-wrapper active-nav-link">
                     <a href="demo.html">DEMO</a>
                 </div>
+                <div class="nav-link-wrapper">
+                    <a href="dashboard.html">DASHBOARD</a>
+                </div>
             </div>
         </div>
 
-        <div class="content-wrapper">
-            <nav id="machinelist" class="sidenav">
-                <h3>Machine List</h3>
-                <ul>
-                    <li><a href="FaultSimulator.html">Fault Simulator</a></li>
-                    <li><a href="Fan.html">Fan</a></li>
-                    <li><a href="Pump.html">Pump</a></li>
-                </ul>
-            </nav>
-            <div id="main" class="main-wrapper">
-                <div class="sidenav-expand">
-                    <div class="hamburger" onclick="toggleMenu()">
-                        <i class="material-icons">menu</i>
-                    </div>
-                </div>
-                <div class="machines-container">
-                    <div class="machine-wrapper" id="FaultSimulator">
-                        <a href="FaultSimulator.html">
-                            <div class="machine-block">
-                                <div class="machine-status" id="FaultSimulator-status">
-                                    <div class="machine-name">Fault Simulator</div>
-                                    <div class="heartbeat" id="FaultSimulator-heartbeat">
-                                        <img src="images/heartbeat.svg">
-                                        <div class="heartbeat-time" id="FaultSimulator-heartbeattime">Last Heartbeat: </div>
-                                    </div>
-                                    <div class="fault" id="FaultSimulator-fault">
-                                        <img src="images/fault.svg">
-                                        <div class="fault-time" id="FaultSimulator-faulttime">Last Fault: </div>
-                                    </div>
-                                    <div class="chart">
-                                        <svg class="chart-svg" id="FaultSimulator-chart" xmlns="http://www.w3.org/2000/svg">
-                                        </svg>
-                                    </div>
-                                    <div class="chart-label">Last 48 hrs</div>
-                                </div>
-                                <div class="machine-img">
-                                    <img src="images/template.svg">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="machine-wrapper" id="Fan">
-                        <a href="Fan.html">
-                            <div class="machine-block">
-                                <div class="machine-status" id="Fan-status">
-                                    <div class="machine-name">Fan</div>
-                                    <div class="heartbeat" id="Fan-heartbeat">
-                                        <img src="images/heartbeat.svg">
-                                        <div class="heartbeat-time" id="Fan-heartbeattime">Last Heartbeat: </div>
-                                    </div>
-                                    <div class="fault" id="Fan-fault">
-                                        <img src="images/fault.svg">
-                                        <div class="fault-time" id="Fan-faulttime">Last Fault: </div>
-                                    </div>
-                                    <div class="chart">
-                                        <svg class="chart-svg" id="Fan-chart" xmlns="http://www.w3.org/2000/svg">
-                                        </svg>
-                                    </div>
-                                    <div class="chart-label">Last 48 hrs</div>
-                                </div>
-                                <div class="machine-img">
-                                    <img src="images/template.svg">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="machine-wrapper" id="Pump">
-                        <a href="Pump.html">
-                            <div class="machine-block">
-                                <div class="machine-status" id="Pump-status">
-                                    <div class="machine-name">Pump</div>
-                                    <div class="heartbeat" id="Pump-heartbeat">
-                                        <img src="images/heartbeat.svg">
-                                        <div class="heartbeat-time" id="Pump-heartbeattime">Last Heartbeat: </div>
-                                    </div>
-                                    <div class="fault" id="Pump-fault">
-                                        <img src="images/fault.svg">
-                                        <div class="fault-time" id="Pump-faulttime">Last Fault: </div>
-                                    </div>
-                                    <div class="chart">
-                                        <svg class="chart-svg" id="Pump-chart" xmlns="http://www.w3.org/2000/svg">
-                                        </svg>
-                                    </div>
-                                    <div class="chart-label">Last 48 hrs</div>
-                                </div>
-                                <div class="machine-img">
-                                    <img src="images/template.svg">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="about-wrapper">
+            <h2>Coming Soon</h2>
         </div>
     </div>
 </body>
-<script>
-    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-    var toggleSwitch = 0;
-    function toggleMenu() {
-        if (toggleSwitch == 0){
-            document.getElementById("machinelist").style.left = "0px";
-            document.getElementById("main").style.marginLeft = "200px";
-            toggleSwitch = 1;
-        } else {
-            document.getElementById("machinelist").style.left = "-200px";
-            document.getElementById("main").style.marginLeft = "0";
-            toggleSwitch = 0;
-        }
-    }
-
-    /* machine 1 chart */
-    var svg = document.getElementById("FaultSimulator-chart");
-    for (let i = 0; i < 10; i++){
-        var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        var color  = (i%2==0) ? "#B3A369" : "#003057"
-        var x = String(i*10) + "%";
-        newRect.setAttribute("x", x);
-        newRect.setAttribute("y", "0");
-        newRect.setAttribute("width", "10%");
-        newRect.setAttribute("height", "100%");
-        newRect.setAttribute("fill", color);
-        svg.appendChild(newRect);
-    }
-
-    /* machine 2 chart */
-    var svg = document.getElementById("Fan-chart");
-    var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    newRect.setAttribute("x", "0");
-    newRect.setAttribute("y", "0");
-    newRect.setAttribute("width", "100%");
-    newRect.setAttribute("height", "100%");
-    newRect.setAttribute("fill", "#54585A");
-    svg.appendChild(newRect);
-
-    /* machine 3 chart */
-    var svg = document.getElementById("Pump-chart");
-    var newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    newRect.setAttribute("x", "0");
-    newRect.setAttribute("y", "0");
-    newRect.setAttribute("width", "100%");
-    newRect.setAttribute("height", "100%");
-    newRect.setAttribute("fill", "#54585A");
-    svg.appendChild(newRect);
-
-</script>
 </html>

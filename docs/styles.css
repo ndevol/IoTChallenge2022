@@ -119,28 +119,15 @@ body {
     transition: 0.5s;
 }
 
-/* .page-wrapper {
+.page-wrapper {
     padding: 25px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 100px 250px 300px 300px 1fr;
+    grid-template-rows: 100px 250px 300px;
     grid-template-areas: "header header header"
                         "data0 data0 data0"
-                        "data1 data2 data3"
-                        "data4 data5 data6"
-                        "table table table";
+                        "data1 data2 data3";
     grid-gap: 10px;
-}
-
-.page-wrapper-one-col {
-    padding: 25px;
-    display: grid;
-    grid-template-rows: 100px 300px 300px 300px;
-    grid-template-areas: "header"
-                        "data0"
-                        "data1"
-                        "data2";
-    grid-gap: 25px;
 }
 
 .input-wrapper {
@@ -157,9 +144,16 @@ body {
     border-radius: 10px;
 }
 
+.item-wrapper h2 {
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
 .item-wrapper h3 {
     color: white;
     text-align: center;
+    margin: 0;
 }
 
 #full-width-item {
@@ -175,6 +169,7 @@ body {
 
 .header-wrapper img {
     height: 100%;
+    padding-right: 10px;
 }
 
 .plot-wrapper {
@@ -183,7 +178,39 @@ body {
 
 #plot0{
     max-height: 200px;
-} */
+} 
+
+
+.button-wrapper {
+    padding-left: 10px;
+}
+
+.button {
+    border: solid 1px #D6DBD4;
+    border-radius: 4px;
+    background-color: #003057;
+    color: white;
+    padding: 4px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #D6DBD4;
+    color: black;
+}
+
+.largetext {
+    color: white;
+    text-align: center;
+    font-size: xxx-large;
+    padding-top: 15%;
+}
 
 /* Demo Landing Page */
 .machines-container {
@@ -205,7 +232,7 @@ body {
     height: 200px;
     display: grid;
     background-color: white;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
     grid-template-areas: "status  img";
     border: #003057 solid;
     border-radius: 10px;
@@ -227,7 +254,7 @@ body {
     grid-area: status;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 2fr 0.5fr;
+    grid-template-rows: 1fr 1fr 1fr 3fr 0.5fr;
     grid-template-areas: "name" 
                          "heartbeat" 
                          "fault" 
@@ -282,6 +309,8 @@ body {
     min-height: 0;
     border-radius: 5px;
     overflow: hidden;
+    /* background-color: #D6DBD4; */
+    background-color: #54585A;
 }
 
 .chart-svg {

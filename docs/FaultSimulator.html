@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Intelligent Acoustic Monitoring</title>
+    <link rel="icon" href="images/buzz.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav-wrapper">
+            <div class="nav-left">
+                <div class="title">
+                    <a href="index.html">Intelligent Acoustic Monitoring</a>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <div class="nav-link-wrapper">
+                    <a href="index.html">ABOUT</a>
+                </div>
+                <div class="nav-link-wrapper">
+                    <a href="demo.html">DEMO</a>
+                </div>
+                <div class="nav-link-wrapper active-nav-link">
+                    <a href="dashboard.html">DASHBOARD</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <nav id="machinelist" class="sidenav">
+                <h3>Machine List</h3>
+                <ul>
+                    <li><a href="FaultSimulator.html">Fault Simulator</a></li>
+                    <li><a href="Fan.html">Fan</a></li>
+                    <li><a href="Pump.html">Pump</a></li>
+                </ul>
+            </nav>
+            <div id="main" class="main-wrapper">
+                <div class="sidenav-expand">
+                    <div class="hamburger" onclick="toggleMenu()">
+                        <i class="material-icons">menu</i>
+                    </div>
+                </div>
+                <div class="page-wrapper">
+                    <div class="header-wrapper">
+                        <img src="images/MFS.jpg">
+                        <h1>Fault Simulator</h1>
+                    </div>
+
+                    <div class="item-wrapper" id="full-width-item">
+                        <h2>Machine States</h2>
+                        <div class="button-wrapper">
+                            <button class="button" onclick="updateStates(event, 1)" id="defaultOpenState">1d</button>
+                            <button class="button" onclick="updateStates(event, 2)">2d</button>
+                            <button class="button" onclick="updateStates(event, 5)">5d</button>
+                            <button class="button" onclick="updateStates(event, 14)">2w</button>
+                            <button class="button" onclick="updateStates(event, 30)">1m</button>
+                        </div>
+                        <div class="plot-wrapper" id="plot0"></div>
+                    </div>
+
+                    <div class="item-wrapper">
+                        <h2>Machine Utilization</h2>
+                        <div class="largetext" id="utilization">48%</div>
+                    </div>
+                    <div class="item-wrapper">
+                        <h2>Number of Faults</h2>
+                        <div class="largetext" id="num_faults"></div>
+                    </div>
+                    <div class="item-wrapper">
+                        <h2>Machine Utilization Last 7 Days</h2>
+                        <div class="plot-wrapper" id="plot1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/httpGetAsync.js"></script>
+<script src="js/getData.js"></script>
+<script src="js/generatePlot.js"></script>
+<script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+    var toggleSwitch = 0;
+    function toggleMenu() {
+        if (toggleSwitch == 0){
+            document.getElementById("machinelist").style.left = "0px";
+            document.getElementById("main").style.marginLeft = "200px";
+            toggleSwitch = 1;
+        } else {
+            document.getElementById("machinelist").style.left = "-200px";
+            document.getElementById("main").style.marginLeft = "0";
+            toggleSwitch = 0;
+        }
+    }
+
+    document.getElementById("defaultOpenState").click();
+    function updateStates(evt, days) {
+        generateStateUtilizationPlot('plot0', 'utilization', 'BooJi_1', 'EquipmentChangeState', days);
+        generateFaultCount('EquipmentAlarm', 'num_faults', 'BooJi_1', days)
+        // setInterval(generateStatePlot, 5*60*1000, 'plot1', assetId);
+    }    
+
+    generateUtilizationPlot('plot1', 'BooJi_1', 'EquipmentChangeState')
+
+
+</script>
+</html>
