@@ -153,7 +153,7 @@
     // getHeartbeat("BooJi_2", "Fan-heartbeat");
     // getHeartbeat("BooJi_3", "Pump-heartbeat");
     // update on interval
-    setInterval(getHeartbeat, 5*60*1000, "BooJi_1", "FaultSimulator-heartbeat"); // Time in milliseconds
+    setInterval(getHeartbeat, 15*1000, "BooJi_1", "FaultSimulator-heartbeat"); // Time in milliseconds
     // setInterval(getHeartbeat, 5*60*1000, "BooJi_2", "Fan-heartbeat"); 
     // setInterval(getHeartbeat, 5*60*1000, "BooJi_3", "Pump-heartbeat"); 
 
@@ -163,7 +163,7 @@
     // getLastFault("BooJi_2", "Fan-fault");
     // getLastFault("BooJi_3", "Pump-fault");
     // update on interval
-    setInterval(getLastFault, 5*60*1000, "BooJi_1", "FaultSimulator-fault"); // Time in milliseconds
+    setInterval(getLastFault, 15*1000, "BooJi_1", "FaultSimulator-fault"); // Time in milliseconds
     // setInterval(getLastFault, 5*60*1000, "BooJi_2", "Fan-fault"); 
     // setInterval(getLastFault, 5*60*1000, "BooJi_3", "Pump-fault"); 
 
@@ -173,6 +173,6 @@
     // createSVG("BooJi_2", "Fan-chart");
     // createSVG("BooJi_3", "Pump-chart");
     // update on interval
-    setInterval(createSVG, 5*60*1000, "BooJi_1", "FaultSimulator-chart");
+    setInterval(createSVG, 60*1000, "BooJi_1", "FaultSimulator-chart");
 </script>
 </html>
