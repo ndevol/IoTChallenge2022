@@ -7,10 +7,11 @@ function getHeartbeat(assetId, elementId) {
         let last_heartbeat = new Date(JSON.parse(JSON.parse(data)[0].payload).dateTime);
         let now = new Date();
         let diff = ((now-last_heartbeat) / 1000).toFixed(0); // seconds
+        console.log(diff);
 
         // set color
         let color = 'red';
-        if (diff < 10*60) {
+        if (diff < 5*60) {
             // color = 'green';
             color = '#32a06d';
         }
