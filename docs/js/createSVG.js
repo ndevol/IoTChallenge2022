@@ -41,8 +41,13 @@ async function createSVG(assetId, elementId) {
         } else if (previousState.length != 0) {
             // everything is good, add previous state to current state
             data.push(previousState[0])
+        } else {
+            // no previousState 
+            var previousStateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), (now.getHours()-49), now.getMinutes());
+            data.push([previousStateTime, '"Stopped"'])
         }
         
+        console.log(data);
         // just for testing
         // var data = await getDataStringTest1("", 'value');
         // console.log(data)
