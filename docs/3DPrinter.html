@@ -23,11 +23,8 @@
                 <div class="nav-link-wrapper">
                     <a href="index.html">ABOUT</a>
                 </div>
-                <div class="nav-link-wrapper">
-                    <a href="demo.html">DEMO</a>
-                </div>
                 <div class="nav-link-wrapper active-nav-link">
-                    <a href="dashboard.html">DASHBOARD</a>
+                    <a href="demo.html">DEMO</a>
                 </div>
             </div>
         </div>
@@ -49,8 +46,8 @@
                 </div>
                 <div class="page-wrapper">
                     <div class="header-wrapper">
-                        <img src="images/MFS.jpg">
-                        <h1>Fault Simulator</h1>
+                        <img src="images/3DPrinter.jpg">
+                        <h1>3D Printer</h1>
                     </div>
 
                     <div class="item-wrapper" id="full-width-item">
@@ -60,14 +57,14 @@
                             <button class="button" onclick="updateStates(event, 2)">2d</button>
                             <button class="button" onclick="updateStates(event, 5)">5d</button>
                             <button class="button" onclick="updateStates(event, 14)">2w</button>
-                            <button class="button" onclick="updateStates(event, 30)">1m</button>
+                            <!-- <button class="button" onclick="updateStates(event, 30)">1m</button> -->
                         </div>
                         <div class="plot-wrapper" id="plot0"></div>
                     </div>
 
                     <div class="item-wrapper">
                         <h2>Machine Utilization</h2>
-                        <div class="largetext" id="utilization">48%</div>
+                        <div class="largetext" id="utilization"></div>
                     </div>
                     <div class="item-wrapper">
                         <h2>Number of Faults</h2>
@@ -102,9 +99,7 @@
 
     document.getElementById("defaultOpenState").click();
     function updateStates(evt, days) {
-        generateStateUtilizationPlot('plot0', 'utilization', 'BooJi_1', 'EquipmentChangeState', days);
-        generateFaultCount('EquipmentAlarm', 'num_faults', 'BooJi_1', days)
-        // setInterval(generateStatePlot, 5*60*1000, 'plot1', assetId);
+        generateMachinePlots('plot0', 'utilization', 'num_faults', 'BooJi_1', 'EquipmentChangeState', days);
     }    
 
     generateUtilizationPlot('plot1', 'BooJi_1', 'EquipmentChangeState')

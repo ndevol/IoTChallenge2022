@@ -25,18 +25,140 @@
                 <div class="nav-link-wrapper">
                     <a href="demo.html">DEMO</a>
                 </div>
-                <div class="nav-link-wrapper">
-                    <a href="dashboard.html">DASHBOARD</a>
-                </div>
             </div>
         </div>
 
         <div class="about-wrapper">
-            <h2>Introduce IoT Challenge</h2>
+            <div class="about-block">
+                <div class="about-heading">
+                    <h2>2022 IoT Challenge</h2>
+                </div>
+                <div class="about-content">
+                    <p>This project was sponsored by the Center for the Development and Application of Internet of Things Technologies (CDAIT) 
+                        as part of the 2022 Student IoT Innovation Capacity Building Challenge. For more information please visit the website 
+                        <a href="https://cdait.gatech.edu/projects/Student_IoT_Innovation_Challenge_2022">here</a>.
+                    </p>
+                    
+                </div>
+            </div>
 
-            <h2>About Us</h2>
+            <div class="about-block">
+                <div class="about-heading">
+                    <h2>About Us</h2>
+                </div>
+                <div class="about-content">
+                    <p>We are an interdisciplinary group from Georgia Tech. To connect with us click on our picture below.</p>
+                    <div class="us-wrapper">
+                        <a href="https://www.linkedin.com/in/nathaniel-devol-0a208184/">
+                            <img src="images/nathan.png">
+                        </a>
+                        <a href="https://www.linkedin.com/in/elizabeth-mcgrath-69a078185/">
+                            <img src="images/elizabeth.png">
+                        </a>
+                        <a href="https://www.linkedin.com/in/christopher-salda%C3%B1a-485479a1/">
+                            <img src="images/saldana.png">
+                        </a>
+                        <div class="about-info">
+                            <p><b>Nathaniel DeVol</b></p>
+                            <p>Team Lead</p>
+                            <p>Graduate Student in Mechanical Engineering</p>
+                        </div>
+                        <div class="about-info">
+                            <p><b>Elizabeth McGrath</b></p>
+                            <p>Team Member</p>
+                            <p>Undergraduate Student in Computer Engineering</p>
+                        </div>
+                        <div class="about-info">
+                            <p><b>Christopher Saldana</b></p>
+                            <p>Faculty Advisor</p>
+                            <p>Professor in Mechanical Engineering</p>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
 
-            <h2>Our Problem</h2>
+            <div class="about-block">
+                <div class="about-heading">
+                    <h2>Our Goal</h2>
+                </div>
+                <div class="about-content">
+                    <p>The goal of our project was to develop a low-cost system which can autonomously learn the typical 
+                        behavior of a machine and alert users when anomalies occur.
+                    </p>
+                    <img src="images/ourgoal.png" width="500px">
+                    <p>Why do we want to do this? The IIoT offers manufacturers vast benefits and is projected to result in tens of 
+                        billions of dollars in improved profits for manufacturers. However, manufacturers do not know how to make use 
+                        of the data they collect so much of the data is not used.
+                    </p>
+                    <img src="images/motivation.png" width="800px" >
+                    <p>Our developed application is provides a low-cost, easy to implement solution so that manufacturers of all sizes 
+                        can rapidly deploy smart edge devices and begin getting actionable insights into industrial processes out-of-the-box
+                         with minimal investment in time and money. </p>
+                </div>
+            </div>
+
+            <div class="about-block">
+                <div class="about-heading">
+                    <h2>How it Works</h2>
+                </div>
+                <div class="about-content">
+                    <p>To acheive this, we developed an application that is deployed in three stages. In the final deployment stage, the 
+                        application classifies sounds as normal or anomalous, but before it can get there it first goes through an initialization and training phase.
+                    </p>
+                    <img src="images/stages.png" width="600px">
+                    <p>In the initialization stage, a Gaussian Mixture Model with two gaussians is used to determine the threshold that distinguishes between the off 
+                        and on states. The means of each distribution are compared to ensure distinct states are found.
+                    </p>
+                    <img src="images/initialization.png" width="800px">
+                    <p>The typical sound from a machine is then learned using a principal components analysis (PCA) based approach which has been proven in past research 
+                        to be successful at classifying anomalous sounds. In this process, the log-mel-spectrogram of the raw sound data is computed and PCA is performed 
+                        on the spectrogram. After performing PCA, the distance from each component to the average of the training data is computed resulting in a point in 
+                        a 3-dimensional space. Finally, the mahalanobis distance is computed in to get the anomaly score.
+                    </p>
+                    <img src="images/pca.png" width="800px">
+                    <p>We tested the process using the MIMII dataset which contains sound data for malfunction machines. The dataset has devices in 4 categories including 
+                        fans, pumps, sliders, and valves. The classification resulted in an f-score of at least 80 in all categories.</p>
+                    <img src="images/testing.png" width="600px">
+                    <p>To support the application, we built a cloud architecture which uses MQTT to transmit status and alert messaged from the edge devices. All messages 
+                        are stored in a SQL database, and in the case of alarms can be optionally sent directly to users. Amazon Web Services is used for the orchestration 
+                        of cloud services and data storage. Finally, a made a prototype user dashboard using github pages. A demonstration is available on this webpage by 
+                        going to the Demo tab of clicking <a href="demo.html">here</a>.
+                    </p>
+                    <img src="images/cloud.png" width="600px">
+                </div>
+            </div>
+
+            <div class="about-block">
+                <div class="about-heading">
+                    <h2>Future Work</h2>
+                </div>
+                <div class="about-content">
+                    <p>This work lays the groundwork for a low-cost, easy to implement anomaly detection device that can be used by manufacturers or all sizes, but there 
+                        are several next steps to improve the application and make it more commercially viable. These include:
+                        <ul>
+                            <li>Complete long-term testing and case studies in read-world applications</li>
+                            <li>Evaluate how the system can be integrated into commercially available data acquisition systems</li>
+                            <li>Incorporate user feedback to improve classification and create a labeled dataset that can be used to identify fault causes</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-block">
+                <div class="about-heading">
+                    <h2>Additional Information</h2>
+                </div>
+                <div class="about-content">
+                    <p>For more information about our project, please check out our recorded presentation or read our full report.</p>
+                    <h3>Recorded Presentation</h3>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/X92_YOB4AZI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <h3>Full Report</h3>
+                    <a href="https://gtvault-my.sharepoint.com/:b:/g/personal/ndevol3_gatech_edu/Efnde_nyM_hEqQxPo6hI4vEB7lEj0ovubg0rgUyCy0madQ?e=anb4dV">
+                        <img src="images/report.png" width="400px">
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>

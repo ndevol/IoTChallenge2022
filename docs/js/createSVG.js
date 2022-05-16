@@ -1,56 +1,33 @@
 // Created by Nathaniel DeVol
 
 async function createSVG(assetId, elementId) {
-    var url = "https://uu93rouaad.execute-api.us-east-1.amazonaws.com/v1/iotchallenge/messages?assetId="+assetId;
-
-    // first check the mode (could be empty)
-    var mode = "Unknown"
-    var url_info = url + "&dataItemId=EquipmentInformation";
-    data = await httpGetAsync(url_info);
-    // find the most recent message with informationId = 'Mode'
-    var arr = JSON.parse(data);
-    for(var i = 0; i < arr.length; i++) {
-        payload = JSON.parse(arr[i].payload)
-        if (payload["informationId"] == "Mode") {
-            mode = payload["value"]
-            break
-        }
+    // set mode 
+    var mode;
+    if (elementId.split("-")[0] == "3DPrinter") {
+        mode = "deploy";
+    } else if (elementId.split("-")[0] == "Fan") {
+        mode = "training";
+    } else {
+        mode = "initialization";
     }
-    // for testing 
-    // mode = 'deploy'
 
     // only proceed if on/off threshold is set
     if (mode == 'deploy' || mode == 'training') {
-        var url_state = url + "&dataItemId=EquipmentChangeState"
-        
+       
         // get states that define the previous 48 hours
-        var now = new Date();
-        var firstDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), (now.getHours()-48), now.getMinutes());
-        var url_state1 = url_state + "&startDateTime="+firstDateTime.getFullYear()+"-"+(firstDateTime.getMonth()+1)+"-"+firstDateTime.getDate()+
-                            "T"+firstDateTime.getHours()+":"+firstDateTime.getMinutes()+"&limit=5000";
-        // get the last state before current day
-        var url_state2 = url_state + "&endDateTime="+firstDateTime.getFullYear()+"-"+(firstDateTime.getMonth()+1)+"-"+firstDateTime.getDate()+
-                            "T"+firstDateTime.getHours()+":"+firstDateTime.getMinutes()+"&limit=1";
-        // add the most recent state (before today) to today's state changes
-        var previousState = await getDataString(url_state2, 'value');
-        var data = await getDataString(url_state1, 'value');
-
-        if (data.length == 0) {
-            // no states in the last 48 hours
-            data = previousState;
-        } else if (previousState.length != 0) {
-            // everything is good, add previous state to current state
-            data.push(previousState[0])
-        } else {
-            // no previousState 
-            var previousStateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), (now.getHours()-49), now.getMinutes());
-            data.push([previousStateTime, '"Stopped"'])
-        }
+        var now = new Date(2022, 4, 13, 23, 00);
+        var firstDateTime = new Date(2022, 4, 11, 23, 00);
         
-        console.log(data);
-        // just for testing
-        // var data = await getDataStringTest1("", 'value');
-        // console.log(data)
+        if (elementId.split("-")[0] == "3DPrinter") {
+            var data_full = await getTestStates1("", 'value');
+            data = data_full.filter(row => row[0] > firstDateTime);
+            data.push(data_full[data.length]);
+        } else if (elementId.split("-")[0] == "Fan") {
+            var data_full = await getTestStates2("", 'value');
+            data = data_full.filter(row => row[0] > firstDateTime);
+            data.push(data_full[data.length]);
+        } 
+
     
         // first cycle through the states to get base color
         var currentDateTime, nextDateTime;
@@ -85,14 +62,8 @@ async function createSVG(assetId, elementId) {
 
         // now add red stripes for alarms (if in deploy)
         if (mode == 'deploy') {
-            // collect alarm data over the past 48 hours
-            var url_alarms = url + "&dataItemId=EquipmentAlarm"
-            url_alarms += "&startDateTime="+firstDateTime.getFullYear()+"-"+(firstDateTime.getMonth()+1)+"-"+firstDateTime.getDate()+
-                            "T"+firstDateTime.getHours()+":"+firstDateTime.getMinutes()+"&limit=5000";
-            var alarms = await getDataString(url_alarms, 'value');
-
-            // just for testing
-            // var alarms = await getDataStringTest2("", 'value');
+            var alarms = await getTestAlarms1("", 'value');
+            alarms = alarms.filter(row => row[0] > firstDateTime);
 
             // var color = 'rgba(217,83,79,1)';
             var color = 'red';

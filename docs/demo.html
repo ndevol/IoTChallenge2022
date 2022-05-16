@@ -25,15 +25,145 @@
                 <div class="nav-link-wrapper active-nav-link">
                     <a href="demo.html">DEMO</a>
                 </div>
-                <div class="nav-link-wrapper">
-                    <a href="dashboard.html">DASHBOARD</a>
-                </div>
             </div>
         </div>
 
-        <div class="about-wrapper">
-            <h2>Coming Soon</h2>
+        <div class="content-wrapper">
+            <nav id="machinelist" class="sidenav">
+                <h3>Machine List</h3>
+                <ul>
+                    <li><a href="3DPrinter.html">Fault Simulator</a></li>
+                    <li><a href="Fan.html">Fan</a></li>
+                    <li><a href="Pump.html">Pump</a></li>
+                </ul>
+            </nav>
+            <div id="main" class="main-wrapper">
+                <div class="sidenav-expand">
+                    <div class="hamburger" onclick="toggleMenu()">
+                        <i class="material-icons">menu</i>
+                    </div>
+                </div>
+                <div class="machines-container">
+                    <div class="machine-wrapper" id="3DPrinter">
+                        <a href="3DPrinter.html">
+                            <div class="machine-block">
+                                <div class="machine-status" id="3DPrinter-status">
+                                    <div class="machine-name">3D Printer</div>
+                                    <div class="heartbeat" id="3DPrinter-heartbeat">
+                                        <img src="images/heartbeat.svg">
+                                        <div class="heartbeat-time" id="3DPrinter-heartbeattime">Last Heartbeat: </div>
+                                    </div>
+                                    <div class="fault" id="3DPrinter-fault">
+                                        <img src="images/fault.svg">
+                                        <div class="fault-time" id="3DPrinter-faulttime">Last Fault: </div>
+                                    </div>
+                                    <div class="chart">
+                                        <svg class="chart-svg" id="3DPrinter-chart" xmlns="http://www.w3.org/2000/svg">
+                                        </svg>
+                                    </div>
+                                    <div class="chart-label">Last 48 hrs</div>
+                                </div>
+                                <div class="machine-img">
+                                    <img src="images/3DPrinter.jpg">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="machine-wrapper" id="Fan">
+                        <a href="Fan.html">
+                            <div class="machine-block">
+                                <div class="machine-status" id="Fan-status">
+                                    <div class="machine-name">Fan</div>
+                                    <div class="heartbeat" id="Fan-heartbeat">
+                                        <img src="images/heartbeat.svg">
+                                        <div class="heartbeat-time" id="Fan-heartbeattime">Last Heartbeat: </div>
+                                    </div>
+                                    <div class="fault" id="Fan-fault">
+                                        <img src="images/fault.svg">
+                                        <div class="fault-time" id="Fan-faulttime">Last Fault: </div>
+                                    </div>
+                                    <div class="chart">
+                                        <svg class="chart-svg" id="Fan-chart" xmlns="http://www.w3.org/2000/svg">
+                                        </svg>
+                                    </div>
+                                    <div class="chart-label">Last 48 hrs</div>
+                                </div>
+                                <div class="machine-img">
+                                    <img src="images/fan.jpg">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="machine-wrapper" id="Pump">
+                        <a href="Pump.html">
+                            <div class="machine-block">
+                                <div class="machine-status" id="Pump-status">
+                                    <div class="machine-name">Pump</div>
+                                    <div class="heartbeat" id="Pump-heartbeat">
+                                        <img src="images/heartbeat.svg">
+                                        <div class="heartbeat-time" id="Pump-heartbeattime">Last Heartbeat: </div>
+                                    </div>
+                                    <div class="fault" id="Pump-fault">
+                                        <img src="images/fault.svg">
+                                        <div class="fault-time" id="Pump-faulttime">Last Fault: </div>
+                                    </div>
+                                    <div class="chart">
+                                        <svg class="chart-svg" id="Pump-chart" xmlns="http://www.w3.org/2000/svg">
+                                        </svg>
+                                    </div>
+                                    <div class="chart-label">Last 48 hrs</div>
+                                </div>
+                                <div class="machine-img">
+                                    <img src="images/pump.jpg">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
+<script src="js/httpGetAsync.js"></script>
+<script src="js/getHeartbeat.js"></script>
+<script src="js/getLastFault.js"></script>
+<script src="js/createSVG.js"></script>
+<script src="js/getData.js"></script>
+<script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+    var toggleSwitch = 0;
+    function toggleMenu() {
+        if (toggleSwitch == 0){
+            document.getElementById("machinelist").style.left = "0px";
+            document.getElementById("main").style.marginLeft = "200px";
+            toggleSwitch = 1;
+        } else {
+            document.getElementById("machinelist").style.left = "-200px";
+            document.getElementById("main").style.marginLeft = "0";
+            toggleSwitch = 0;
+        }
+    }
+
+    /* heartbeats */
+    // initial time and color
+    getHeartbeat("BooJi_1", "3DPrinter-heartbeat");
+    getHeartbeat("BooJi_2", "Fan-heartbeat");
+    getHeartbeat("BooJi_3", "Pump-heartbeat");
+    // update on interval
+    setInterval(getHeartbeat, 60*1000, "BooJi_1", "3DPrinter-heartbeat"); // Time in milliseconds
+    setInterval(getHeartbeat, 60*1000, "BooJi_2", "Fan-heartbeat"); 
+    setInterval(getHeartbeat, 60*1000, "BooJi_3", "Pump-heartbeat"); 
+
+    /* last fault */
+    // initial time and color
+    getLastFault("BooJi_1", "3DPrinter-fault");
+    getLastFault("BooJi_2", "Fan-fault");
+    getLastFault("BooJi_3", "Pump-fault");
+
+    /* charts */ 
+    // initial
+    createSVG("BooJi_1", "3DPrinter-chart");
+    createSVG("BooJi_2", "Fan-chart");
+    createSVG("BooJi_3", "Pump-chart");
+</script>
 </html>

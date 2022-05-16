@@ -327,5 +327,49 @@ body {
 /* About Page Styles */
 .about-wrapper {
     padding: 10px;
+    padding-top: 60px;
+    justify-content: center;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.about-block {
+    position: relative;
+    padding: 40px;
+}
+
+.about-heading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #003057;
+    color: white;
+    width: 50%;
+    max-width: 300px;
+    min-height: 80px;
+    justify-content: center;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.about-content {
+    padding: 20px;
     padding-top: 50px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.us-wrapper {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.about-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.about-info p {
+    margin: 2px;
 }
