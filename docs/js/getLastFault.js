@@ -33,7 +33,7 @@ async function getLastFault(assetId, elementId) {
             var unit = " sec";
             if (diff/(60*60*24) > 1) {
                 diff = (diff/(60*60*24)).toFixed(0)
-                unit = " days"
+                unit = " day"
             } else if (diff/(60*60) > 1) {
                 diff = (diff/(60*60)).toFixed(0)
                 unit = " hours"

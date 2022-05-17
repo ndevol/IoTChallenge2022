@@ -124,7 +124,7 @@ async function getTestStates1(messagesUrl, key) {
 async function getTestAlarms1(messagesUrl, key) {
     arr = [
         {
-        "dateTime": "2022-05-13T14:40:00.000Z",
+        "dateTime": "2022-05-13T14:40:00.000Z", // "2022-05-13T14:40:00.000Z" or "2022-05-12T09:50:00.000Z"
         "dataItemId": "EquipmentAlarm",
         "value": "\"True\""
         },       
