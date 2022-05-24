@@ -24,6 +24,10 @@ body {
     font-size: x-large;
 }
 
+.title img {
+    max-height: 20px;
+}
+
 .nav-right {
     display: flex;
 }
